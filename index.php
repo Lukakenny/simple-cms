@@ -1,9 +1,12 @@
 <?php
-
-
-
-
 require_once 'vendor/autoload.php';
+
+if(session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -156,9 +159,13 @@ require_once 'vendor/autoload.php';
         <button type="submit">Registruj se</button>
     </form>
 
+
+
     <div class="login-link">
         Već imate nalog? <a href="login.php">Prijavite se ovde</a>
     </div>
+
+
 </div>
 
 </body>
