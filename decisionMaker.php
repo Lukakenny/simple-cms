@@ -19,3 +19,8 @@ if(isset($_POST['register']))
    $userController = new UserController();
    $userController->register($_POST);
 }
+if(isset($_POST['login']))
+{
+    $userController = new UserController();
+    $userController->login($_POST);
+}
