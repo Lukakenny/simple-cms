@@ -9,40 +9,55 @@ use app\Modeli\User;
 class UserController
 {
     public function register(array $data)
-    {
+    {  $greske= [];
+
+
+
 
         if (!isset($_POST['ime']) || empty($_POST['ime']))
         {
-           die("mniste uneli ime");
+            array_push($greske, "Ime nije prosledjeno");
         }
         if (!isset($_POST['email']) || empty($_POST['email']))
         {
-            die("niste uneli email");
+            array_push($greske, "Email nije prosledjeno");
         }
          if (!isset($_POST['lozinka']) || empty($_POST['lozinka']))
          {
-            die('nise uneli lozinku ');
+             array_push($greske, "Lozinka nije prosledjena");
          }
+        $_SESSION['greska'] = $greske;
+
+         if(!empty($greske))
+         {
+             header("Location: index.php");
+             exit();
+         }
+
+         $password = password_hash($_POST['lozinka'], PASSWORD_DEFAULT);
 
 
 
          $user = new User();
 
-         if($user->userExists($_POST['email']))
+         if($user->userExists($data['email']))
          {
-
              $greske= [];
              array_push($greske, "Korisnik vec postoji");
              $_SESSION['greska'] = $greske;
-
-
-             header("index.php");
-
+             header("location: index.php");
          }
          else
          {
-
+             $succses = [];
+             $user->create($data['ime'], $data['email'], $password);
+             array_push($succses, "Uspesno ste registrovani, ulogujte se na svoj account");
+             $_SESSION['uspesno'] = $succses;
+             header("location: login.php");
          }
+
+
+
 
 
     }

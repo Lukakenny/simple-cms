@@ -129,6 +129,33 @@ if(session_status() == PHP_SESSION_NONE)
         .login-link a:hover {
             text-decoration: underline;
         }
+
+        .error-container {
+            background-color: #fdf3f2;
+            border-left: 5px solid #e74c3c;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.15);
+            animation: shake 0.4s ease-in-out;
+        }
+
+
+        .error-container p {
+            color: #c0392b;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px 0;
+        }
+
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-5px); }
+            40% { transform: translateX(5px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+        }
     </style>
 </head>
 <body>
@@ -158,6 +185,23 @@ if(session_status() == PHP_SESSION_NONE)
 
         <button type="submit">Registruj se</button>
     </form>
+
+    <?php if (isset($_SESSION['greska']) && !empty($_SESSION['greska'])): ?>
+
+        <div class="error-container">
+            <?php foreach ($_SESSION['greska'] as $greska): ?>
+
+                <p>⚠️ <?= $greska ?></p>
+            <?php endforeach; ?>
+        </div>
+
+        <?php
+        unset($_SESSION['greska']);
+        ?>
+
+    <?php endif; ?>
+
+
 
 
 

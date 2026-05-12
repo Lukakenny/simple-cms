@@ -16,5 +16,15 @@ class User extends DB
        return $stmt->rowCount() > 0;
  }
 
+    public function create(string $ime,string $email, string $lozinka):void
+    {
+        $stmt = $this->connection->prepare("INSERT INTO korisnici (ime,email,lozinka) VALUES (:ime, :email, :lozinka) ");
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':ime', $ime);
+        $stmt->bindParam(':lozinka', $lozinka);
+        $stmt->execute();
+
+ }
+
 
 }
