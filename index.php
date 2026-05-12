@@ -134,21 +134,23 @@ require_once 'vendor/autoload.php';
     <h2>Napravi nalog</h2>
     <p>Pridruži se našem CMS sistemu</p>
 
-    <form action="register_proces.php" method="POST">
+    <form action="decisionMaker.php" method="POST">
+
+        <input type="hidden" name="register">
 
         <div class="input-group">
             <label for="ime">Ime i prezime</label>
-            <input type="text" id="ime" name="ime" placeholder="Unesite vaše ime" required>
+            <input  type="text" id="ime" name="ime" placeholder="Unesite vaše ime" required>
         </div>
 
         <div class="input-group">
             <label for="email">Email adresa</label>
-            <input type="email" id="email" name="email" placeholder="vas@email.com" required>
+            <input  type="email" id="email" name="email" placeholder="vas@email.com" required>
         </div>
 
         <div class="input-group">
             <label for="lozinka">Lozinka</label>
-            <input type="password" id="lozinka" name="lozinka" placeholder="Unesite jaku lozinku" minlength="4" required>
+            <input  type="password" id="lozinka" name="lozinka" placeholder="Unesite jaku lozinku" minlength="4" required>
         </div>
 
         <button type="submit">Registruj se</button>
