@@ -166,6 +166,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true)
         <ul class="nav-links">
             <li><a href="dashboard.html"><span>📊</span> Kontrolna tabla</a></li>
             <li><a href="dashboard.php" class="active"><span>📝</span> Objave / Blog</a></li>
+            <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
 
         </ul>
         <div class="sidebar-footer">

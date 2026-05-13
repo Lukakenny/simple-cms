@@ -16,4 +16,12 @@ VALUES (:naslov,:tekst,:korisnik_id,NOW())");
 
    $stmt->execute();
      }
+
+    public function getPostsById(int $id) :array
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM postovi WHERE korisnik_id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
+     }
 }
