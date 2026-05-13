@@ -176,7 +176,7 @@ $myPosts = $post->getPostsById($_SESSION['id']);
     <ul class="nav-links">
         <li><a href="dashboard.html"><span>📊</span> Kontrolna tabla</a></li>
         <li><a href="blogovi.html"><span>📝</span> Sve objave</a></li>
-        <li><a href="moji_blogovi.html" class="active"><span>📂</span> Moji blogovi</a></li>
+        <li><a href="mojiBlogovi.php" class="active"><span>📂</span> Moji blogovi</a></li>
         <li><a href="#"><span>👥</span> Korisnici</a></li>
         <li><a href="#"><span>⚙️</span> Podešavanja</a></li>
     </ul>
@@ -207,9 +207,16 @@ $myPosts = $post->getPostsById($_SESSION['id']);
                        <p><?= $post['sadrzaj'] ?></p>
 
                        <div class="blog-actions">
-                           <a href="#" class="btn btn-read">Pročitaj sve</a>
+
+
                            <a href="#" class="btn btn-edit">✎ Izmeni</a>
-                           <button class="btn btn-delete">🗑️ Obriši</button>
+
+                           <form action="decisionMaker.php" method="POST" style="display:inline;" >
+
+                               <input type="hidden" name="delete" value="<?= $post['id'] ?>">
+
+                               <button type="submit" name="obrisiBlog" class="btn btn-delete">🗑️ Obriši</button>
+                           </form>
                        </div>
                    </div>
              <?php endforeach; ?>

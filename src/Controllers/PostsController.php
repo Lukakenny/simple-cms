@@ -21,7 +21,18 @@ class PostsController
         $post->creat($data['naslov'], $data['sadrzaj'],$_SESSION['id']);
         header("Location: dashboard.php");
         exit();
-
-
     }
+
+    public function deletePost(int $sessionId, string $postId):void
+    {
+          $post =new Posts();
+          $obrisiPost = $post-> deletePost($sessionId, $postId);
+
+          if ($obrisiPost) {
+
+              header("Location: mojiBlogovi.php");
+          }
+    }
+
+
 }

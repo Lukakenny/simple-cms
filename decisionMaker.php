@@ -9,10 +9,7 @@ if(session_status() === PHP_SESSION_NONE)
 
 use app\Controllers\PostsController;
 use app\Controllers\UserController;
-
-if(session_status() == PHP_SESSION_NONE){
-    session_start();
-}
+use app\Modeli\Posts;
 
 
 if(isset($_POST['register']))
@@ -37,4 +34,13 @@ if(isset($_POST['newPost']))
     $userController = new PostsController();
     $userController->createPost($_POST);
 }
+
+
+if(isset($_POST['delete']))
+{
+    $postController = new PostsController();
+    $postController->deletePost($_SESSION['id'],$_POST['delete']);
+}
+
+
 

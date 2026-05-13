@@ -24,4 +24,15 @@ VALUES (:naslov,:tekst,:korisnik_id,NOW())");
         $stmt->execute();
         return $stmt->fetchAll();
      }
+
+    public function deletePost(int $id,string $postId) :bool
+    {
+        $stmt = $this->connection->prepare("DELETE FROM postovi WHERE korisnik_id = :id AND id = :postId");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':postId', $postId);
+       return $stmt->execute();
+
+    }
+
+
 }
