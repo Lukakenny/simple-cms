@@ -1,6 +1,6 @@
 <?php
 
-if(session_status() == PHP_SESSION_NONE){
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
@@ -150,11 +150,21 @@ if(session_status() == PHP_SESSION_NONE){
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-5px); }
-            40% { transform: translateX(5px); }
-            60% { transform: translateX(-5px); }
-            80% { transform: translateX(5px); }
+            0%, 100% {
+                transform: translateX(0);
+            }
+            20% {
+                transform: translateX(-5px);
+            }
+            40% {
+                transform: translateX(5px);
+            }
+            60% {
+                transform: translateX(-5px);
+            }
+            80% {
+                transform: translateX(5px);
+            }
         }
     </style>
 </head>
@@ -177,7 +187,7 @@ if(session_status() == PHP_SESSION_NONE){
     <!-- Forma gađa tvoj decisionMaker.php -->
     <form action="decisionMaker.php" method="POST">
 
-        <input type="hidden" name="login" >
+        <input type="hidden" name="login">
 
         <div class="input-group">
             <label for="email">Email adresa</label>

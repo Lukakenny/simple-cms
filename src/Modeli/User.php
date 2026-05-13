@@ -25,7 +25,7 @@ class User extends DB
 
     }
 
-    public function getUserByEmail(string $email) :array
+    public function getUserByEmail(string $email): array
     {
         $stmt = $this->connection->prepare("SELECT * FROM korisnici WHERE email = :email ");
         $stmt->bindParam(':email', $email);

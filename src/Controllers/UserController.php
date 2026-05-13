@@ -65,25 +65,28 @@ class UserController
             exit();
         }
 
-       $user = new User();
+        $user = new User();
 
-    $korisnik = $user->getUserByEmail($data['email']);
+        $korisnik = $user->getUserByEmail($data['email']);
 
-        if ($korisnik && password_verify($data['lozinka'], $korisnik['lozinka']))
-        {
+        if ($korisnik && password_verify($data['lozinka'], $korisnik['lozinka'])) {
             $_SESSION['id'] = $korisnik['id'];
+            $_SESSION['ime'] = $korisnik['ime'];
             $_SESSION['logIn'] = true;
             header("location: dashboard.php");
             exit();
 
-        }
-        else
-        {
-           array_push($_SESSION['greska'], "Email/Lozinka nisu ispravni");
-           header("Location: login.php");
+        } else {
+            array_push($_SESSION['greska'], "Email/Lozinka nisu ispravni");
+            header("Location: login.php");
         }
 
-
-
+    }
+    public function logout()
+    {
+        $_SESSION['logIn'] = false;
+        session_destroy();
+        header("Location: login.php");
+        exit();
     }
 }
