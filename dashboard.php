@@ -165,7 +165,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true)
         </div>
         <ul class="nav-links">
             <li><a href="dashboard.html"><span>📊</span> Kontrolna tabla</a></li>
-            <li><a href="blogovi.html" class="active"><span>📝</span> Objave / Blog</a></li>
+            <li><a href="dashboard.php" class="active"><span>📝</span> Objave / Blog</a></li>
 
         </ul>
         <div class="sidebar-footer">
@@ -180,7 +180,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true)
                 <h1>Sve objave</h1>
             </div>
 
-            <a href="#" class="action-btn">+ Nova Objava</a>
+            <a href="newPost.php" class="action-btn">+ Nova Objava</a>
         </header>
 
         <div class="content-wrapper">

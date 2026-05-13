@@ -7,6 +7,7 @@ if(session_status() === PHP_SESSION_NONE)
 }
 
 
+use app\Controllers\PostsController;
 use app\Controllers\UserController;
 
 if(session_status() == PHP_SESSION_NONE){
@@ -30,5 +31,10 @@ if (isset($_GET['akcija']) && $_GET['akcija'] === 'logout') {
 
     $userController = new UserController();
     $userController->logout();
+}
+if(isset($_POST['newPost']))
+{
+    $userController = new PostsController();
+    $userController->createPost($_POST);
 }
 
