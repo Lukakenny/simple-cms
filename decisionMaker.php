@@ -23,12 +23,14 @@ if(isset($_POST['login']))
     $userController->login($_POST);
 }
 
-// Proveravamo da li je u URL-u prosleđen parametar za logout
+
 if (isset($_GET['akcija']) && $_GET['akcija'] === 'logout') {
 
     $userController = new UserController();
     $userController->logout();
 }
+
+var_dump($_POST['newPost']);
 if(isset($_POST['newPost']))
 {
     $userController = new PostsController();

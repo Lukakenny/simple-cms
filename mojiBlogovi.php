@@ -235,6 +235,19 @@ $myPosts = $post->getPostsById($_SESSION['id']);
                            <p class="kategorija-minimal">
                                📁 <strong>Kategorija:</strong> <span><?= $post['imeKategorije'] ?></span>
                            </p>
+                           <p>Tagovi:
+                               <?php
+
+                               if (!empty($post['sviTagovi'])):
+                                   $nizTagova = explode(',', $post['sviTagovi']);
+                                   foreach ($nizTagova as $tag):
+                                       ?>
+                                       <span class="tag-stil"> #<?= trim($tag) ?> </span>
+                                   <?php
+                                   endforeach;
+                               endif;
+                               ?>
+                           </p>
 
 
                            <div class="blog-actions">

@@ -24,11 +24,27 @@ class PostsController
         }
 
 
+        $tagoviIzForme = $data['tagovi'] ?? [];
+
         $post = new Posts();
-        $post->creat($data['naslov'], $data['sadrzaj'],$_SESSION['id'],intval($data['kategorijaID']));
+
+
+        $noviPostId = $post->creat(
+            $data['naslov'],
+            $data['sadrzaj'],
+            $_SESSION['id'],
+           $data['kategorijaID']
+        );
+
+
+        if (!empty($tagoviIzForme)) {
+
+            $post->addTag($tagoviIzForme, $noviPostId);
+        }
+
         header("Location: mojiBlogovi.php");
         exit();
-    }
+        }
 
     public function deletePost(int $sessionId, string $postId):void
     {
@@ -76,6 +92,8 @@ class PostsController
           header("Location: adminDashboard.php");
           exit();
     }
+
+
 
 
 

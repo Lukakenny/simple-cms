@@ -1,4 +1,8 @@
 <?php
+
+use app\Modeli\Posts;
+
+require_once 'vendor/autoload.php';
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
@@ -8,6 +12,8 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
     header("Location: index.php");
     exit();
 }
+$post = new Posts();
+$allPosts= $post->getAllPosts();
 ?>
 <!DOCTYPE html>
 <html lang="sr">
@@ -204,7 +210,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
 
             <form action="decisionMaker.php" method="POST">
 
-                <input type="hidden" name="newPost">
+             <input type="hidden" name="newPost" ?>
 
                 <div class="input-group">
                     <label for="naslov">Naslov objave</label>
