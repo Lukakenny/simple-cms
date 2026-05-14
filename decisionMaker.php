@@ -43,4 +43,14 @@ if(isset($_POST['delete']))
 }
 
 
+if(isset($_POST['updatePost'])) {
+
+    $postController = new PostsController();
+   $postId = intval($_POST['updatePost']);
+    $postController->updatePost($postId,$_SESSION['id'], $_POST['naslovUpdate'], $_POST['sadrzajUpdate'] );
+}
+
+
+
+
 

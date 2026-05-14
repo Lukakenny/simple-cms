@@ -8,6 +8,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
     header("Location: index.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="sr">
@@ -130,21 +131,20 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
             border-color: #4CAF50;
         }
 
-        .btn-submit {
+        .submit-btn {
             background-color: #4CAF50;
             color: white;
-            padding: 14px;
+            padding: 15px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            align-self: flex-start; /* Da dugme ne bude rastegnuto celom širinom */
-            padding: 12px 30px;
+            margin-top: 10px;
         }
 
-        .btn-submit:hover {
+        .submit-btn:hover {
             background-color: #45a049;
         }
 
@@ -172,7 +172,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
             <h1>Kreiraj novu objavu</h1>
         </div>
 
-        <a href="dashboard.php" style="color: #777; text-decoration: none; font-weight: 500;">← Nazad na sve objave</a>
+        <a href="mojiBlogovi.php" style="color: #777; text-decoration: none; font-weight: 500;">← Nazad na tvoje objave</a>
     </header>
 
     <div class="content-wrapper">
@@ -180,19 +180,19 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
 
             <form action="decisionMaker.php" method="POST">
 
-                <input type="hidden" name="newPost">
+                <input type="hidden" name="updatePost" value="<?= $_GET['id'] ?>">
 
                 <div class="input-group">
                     <label for="naslov">Naslov objave</label>
-                    <input type="text" id="naslov" name="naslov" placeholder="Unesite naslov..." required>
+                    <input type="text" id="naslovUpdate" name="naslovUpdate" placeholder="Unesite naslov..." required>
                 </div>
 
                 <div class="input-group">
                     <label for="sadrzaj">Sadržaj</label>
-                    <textarea id="sadrzaj" name="sadrzaj" placeholder="Ovde započnite pisanje vašeg blog posta..." required></textarea>
+                    <textarea id="sadrzaj" name="sadrzajUpdate" placeholder="Ovde započnite pisanje vašeg blog posta..." required></textarea>
                 </div>
 
-                <button type="submit" name="sacuvaj_objavu" class="btn-submit">Objavi tekst</button>
+                <button type="submit" name="azuriraj" class="submit-btn">💾 Sačuvaj izmene</button>
             </form>
 
         </div>

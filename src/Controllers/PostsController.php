@@ -34,5 +34,15 @@ class PostsController
           }
     }
 
+    public function updatePost(int $postId, int $sessionId, string $naslov,string $sadrzaj):void
+    {
+        $post =new Posts();
+        $updatePost = $post->updatePost($postId,$sessionId ,$naslov, $sadrzaj);
+         header("Location: mojiBlogovi.php");
+
+
+
+    }
+
 
 }

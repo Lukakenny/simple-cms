@@ -209,7 +209,7 @@ $myPosts = $post->getPostsById($_SESSION['id']);
                        <div class="blog-actions">
 
 
-                           <a href="#" class="btn btn-edit">✎ Izmeni</a>
+                           <a href="updatePost.php?id=<?= $post['id'] ?>" class="btn btn-edit">✎ Izmeni</a
 
                            <form action="decisionMaker.php" method="POST" style="display:inline;" >
 

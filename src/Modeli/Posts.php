@@ -31,8 +31,22 @@ VALUES (:naslov,:tekst,:korisnik_id,NOW())");
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':postId', $postId);
        return $stmt->execute();
-
     }
+    public function updatePost(int $postId, int $userId, string $naslov, string $sadrzaj) : bool
+    {
+        
+        $stmt = $this->connection->prepare("UPDATE postovi SET naslov = :naslov, sadrzaj = :sadrzaj, kreiran_u = NOW() WHERE id = :postId AND korisnik_id = :userId");
+
+        // 2. Vezujemo sve parametre pazeći na tačna imena!
+        $stmt->bindParam(':naslov', $naslov);
+        $stmt->bindParam(':sadrzaj', $sadrzaj);
+        $stmt->bindParam(':postId', $postId);
+        $stmt->bindParam(':userId', $userId);
+
+
+        return $stmt->execute();
+    }
+
 
 
 }
