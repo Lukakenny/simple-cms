@@ -3,15 +3,14 @@
 
 require_once 'vendor/autoload.php';
 
-// 1. Pokretanje sesije ako već nije pokrenuta
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// 2. STROGA PROVERA: Da li je ulogovan i da li je ADMIN?
-// Pretpostavljamo da se varijabla za prijavu zove 'logIn', a za ulogu 'uloga'
+
 if (!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true || !isset($_SESSION['uloga']) || $_SESSION['uloga'] !== 'admin') {
-    // Ako nije ulogovan ili nije admin, teraj ga na početnu/login
+
     header("Location: index.php");
     exit();
 }
@@ -262,21 +261,19 @@ $allPosts = $posts->getAllPosts();
 
     <div class="content-wrapper">
 
-        <!-- STATISTIKA -->
+
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Ukupno Objava</h3>
-                <!-- Ovde ćeš ubaciti PHP varijablu koja broji postove -->
                 <div class="number"><?= count($allPosts) ?></div>
             </div>
             <div class="stat-card">
                 <h3>Ukupno Korisnika</h3>
-                <!-- Ovde ćeš ubaciti PHP varijablu koja broji korisnike -->
                 <div class="number"><?= count($allUsers) ?></div>
             </div>
         </div>
 
-        <!-- SVI POSTOVI -->
+
         <h2 class="section-title">Upravljanje objavama</h2>
 
         <?php if (!empty($allPosts)) : ?>

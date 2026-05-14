@@ -59,30 +59,25 @@ class PostsController
           }
     }
 
-    public function updatePost(int $postId, int $sessionId, string $naslov,string $sadrzaj):void
+    public function updatePost(int $postId, int $sessionId, string $naslov, string $sadrzaj): void
     {
-
         $greske = [];
-        if (!isset($data['naslovUpdate']) || empty($data['naslovUpdate'])) {
+
+        if (empty(trim($naslov))) {
             array_push($greske, "Naslov nije pronadjen");
         }
-        if (!isset($data['sadrzajUpdate']) || empty($data['sadrzajUpdate'])) {
-            array_push($greske, "Sadrzaj nije prosledjeno");
+        if (empty(trim($sadrzaj))) {
+            array_push($greske, "Sadrzaj nije prosledjen");
         }
-        $_SESSION['greska'] = $greske;
         if (!empty($greske)) {
-            header("Location: newPost.php");
+            $_SESSION['greska'] = $greske;
+            header("Location: updatePost.php?id=" . $postId);
             exit();
         }
-
-
-        $post =new Posts();
-        $updatePost = $post->updatePost($postId,$sessionId ,$naslov, $sadrzaj);
-        if ($updatePost)
-        {
-            header("Location: mojiBlogovi.php");
-            exit();
-        }
+        $post = new Posts();
+        $post->updatePost($postId, $sessionId, $naslov, $sadrzaj);
+        header("Location: mojiBlogovi.php");
+        exit();
     }
 
     public function deleteAdmin(int $postId):void

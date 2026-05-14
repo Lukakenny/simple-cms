@@ -3,6 +3,11 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+if(isset($_SESSION['logIn']) && $_SESSION['logIn'] === true) {
+    header("Location: dashboard.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="sr">

@@ -6,10 +6,7 @@ if(session_status() === PHP_SESSION_NONE)
     session_start();
 }
 
-if (!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
-    header("Location: index.php");
-    exit();
-}
+
 
 
 use app\Controllers\PostsController;

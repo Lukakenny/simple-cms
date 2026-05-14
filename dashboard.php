@@ -332,7 +332,7 @@ $sveKategorije = $kategorije->getAllCategories();
 
 
 
-        <!-- NAVIGACIJA SA KATEGORIJAMA (Pills) -->
+
         <div class="kategorije-kontejner">
             <a href="dashboard.php" class="kategorija-pill <?= !isset($_GET['kategorija']) ? 'aktivna' : '' ?>">Sve objave</a>
 

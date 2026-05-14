@@ -23,7 +23,6 @@ $kategorije = new Posts();
 $sveKategorije = $kategorije->getAllCategories();
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -65,35 +64,76 @@ $sveKategorije = $kategorije->getAllCategories();
             border-bottom: 1px solid #eeeeee;
         }
 
-        .sidebar-header h2 { color: #333; font-size: 22px; }
+        .sidebar-header h2 {
+            color: #333;
+            font-size: 22px;
+        }
 
-        .nav-links { list-style: none; padding: 20px 0; flex: 1; }
+        .nav-links {
+            list-style: none;
+            padding: 20px 0;
+            flex: 1;
+        }
+
         .nav-links li a {
-            display: flex; align-items: center; padding: 15px 25px;
-            color: #555555; text-decoration: none; font-size: 15px; font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: #555555;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
-        .nav-links li a:hover, .nav-links li a.active {
-            background-color: #f0fdf4; color: #4CAF50; border-right: 4px solid #4CAF50;
-        }
-        .nav-links li a span { margin-right: 15px; font-size: 18px; }
 
-        .sidebar-footer { padding: 20px; border-top: 1px solid #eeeeee; }
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: #f0fdf4;
+            color: #4CAF50;
+            border-right: 4px solid #4CAF50;
+        }
+
+        .nav-links li a span {
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eeeeee;
+        }
+
         .logout-btn {
-            display: block; text-align: center; background-color: #ffe6e6;
-            color: #d93025; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold;
+            display: block;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d93025;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         /* --- GLAVNI DEO --- */
         .main-content {
-            flex: 1; display: flex; flex-direction: column; overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
         }
 
         .topbar {
-            background-color: #ffffff; padding: 20px 40px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            display: flex; justify-content: space-between; align-items: center;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .welcome-text h1 { font-size: 20px; color: #333; }
+
+        .welcome-text h1 {
+            font-size: 20px;
+            color: #333;
+        }
 
         .content-wrapper {
             padding: 40px;
@@ -211,12 +251,12 @@ $sveKategorije = $kategorije->getAllCategories();
 <!-- TVOJ SIDEBAR -->
 <aside class="sidebar">
     <div class="sidebar-header">
-        <h2>Pozdrav <?= $_SESSION['ime']?></h2>
+        <h2>Pozdrav <?= $_SESSION['ime'] ?></h2>
     </div>
     <ul class="nav-links">
         <?php if (isset($_SESSION['uloga']) && $_SESSION['uloga'] === "admin"): ?>
             <li><a href="adminDashboard.php"><span>📊</span> Kontrolna tabla</a></li>
-            <li><a href="dashboard.php" ><span>📝</span> Sve objave</a></li>
+            <li><a href="dashboard.php"><span>📝</span> Sve objave</a></li>
             <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
 
         <?php else: ?>
@@ -231,36 +271,38 @@ $sveKategorije = $kategorije->getAllCategories();
     </div>
 </aside>
 
-<!-- TVOJ GLAVNI DEO -->
 <main class="main-content">
 
-    <!-- TVOJ TOPBAR -->
+
     <header class="topbar">
         <div class="welcome-text">
             <h1>Pregled objava</h1>
         </div>
-        <!-- Dugme za kreiranje novog posta u topbaru -->
-        <a href="newPost.php" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px;">+ Nova objava</a>
+
+        <a href="newPost.php"
+           style="background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px;">+
+            Nova objava</a>
     </header>
 
-    <!-- SADRŽAJ STRANICE (Kategorije i Grid) -->
+
     <div class="content-wrapper">
 
-        <!-- NAVIGACIJA SA KATEGORIJAMA (Pills) -->
+
         <div class="kategorije-kontejner">
-            <a href="dashboard.php" class="kategorija-pill <?= !isset($_GET['kategorija']) ? 'aktivna' : '' ?>">Sve objave</a>
+            <a href="dashboard.php" class="kategorija-pill <?= !isset($_GET['kategorija']) ? 'aktivna' : '' ?>">Sve
+                objave</a>
 
             <?php foreach ($sveKategorije as $kategorija): ?>
                 <?php
                 $aktivnaKlasa = (isset($_GET['kategorija']) && $_GET['kategorija'] == $kategorija['id']) ? 'aktivna' : '';
                 ?>
-                <a href="kategorije.php?kategorija=<?= $kategorija['id'] ?>" class="kategorija-pill <?= $aktivnaKlasa ?>">
+                <a href="kategorije.php?kategorija=<?= $kategorija['id'] ?>"
+                   class="kategorija-pill <?= $aktivnaKlasa ?>">
                     <?= htmlspecialchars($kategorija['naziv']) ?>
                 </a>
             <?php endforeach; ?>
         </div>
 
-        <!-- PRIKAZ POSTOVA -->
         <div class="postovi-grid">
             <?php if (!empty($postoviZaPrikaz)): ?>
 
