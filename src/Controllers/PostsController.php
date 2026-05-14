@@ -12,9 +12,13 @@ class PostsController
             array_push($greske, "Naslov nije pronadjen");
         }
         if (!isset($data['sadrzaj']) || empty($data['sadrzaj'])) {
-            array_push($greske, "Ime nije prosledjeno");
+            array_push($greske, "Sadrzaj nije prosledjeno");
         }
-
+        $_SESSION['greska'] = $greske;
+        if (!empty($greske)) {
+            header("Location: newPost.php");
+            exit();
+        }
 
 
         $post = new Posts();
@@ -36,6 +40,20 @@ class PostsController
 
     public function updatePost(int $postId, int $sessionId, string $naslov,string $sadrzaj):void
     {
+
+        $greske = [];
+        if (!isset($data['naslovUpdate']) || empty($data['naslovUpdate'])) {
+            array_push($greske, "Naslov nije pronadjen");
+        }
+        if (!isset($data['sadrzajUpdate']) || empty($data['sadrzajUpdate'])) {
+            array_push($greske, "Sadrzaj nije prosledjeno");
+        }
+        $_SESSION['greska'] = $greske;
+        if (!empty($greske)) {
+            header("Location: newPost.php");
+            exit();
+        }
+
         $post =new Posts();
         $updatePost = $post->updatePost($postId,$sessionId ,$naslov, $sadrzaj);
         if ($updatePost)

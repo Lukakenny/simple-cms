@@ -147,6 +147,22 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
         .submit-btn:hover {
             background-color: #45a049;
         }
+        .error-container {
+            background-color: #fdf3f2;
+            border-left: 5px solid #e74c3c;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.15);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .error-container p {
+            color: #c0392b;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px 0;
+        }
 
     </style>
 </head>
@@ -154,11 +170,12 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
 
 <aside class="sidebar">
     <div class="sidebar-header">
-        <h2>CMS Admin</h2>
+        <h2>Pozdrav <?= $_SESSION['ime']?></h2>
     </div>
     <ul class="nav-links">
         <li><a href="dashboard.php"><span>📊</span> Kontrolna tabla</a></li>
-        <li><a href="blogovi.php" class="active"><span>📝</span> Objave / Blog</a></li>
+        <li><a href="blogovi.php" class="active"><span>📝</span> Sve objave</a></li>
+        <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
 
     </ul>
     <div class="sidebar-footer">
@@ -169,7 +186,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
 <main class="main-content">
     <header class="topbar">
         <div class="welcome-text">
-            <h1>Kreiraj novu objavu</h1>
+            <h1>Izmeni objavu</h1>
         </div>
 
         <a href="mojiBlogovi.php" style="color: #777; text-decoration: none; font-weight: 500;">← Nazad na tvoje objave</a>
@@ -193,6 +210,15 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
                 </div>
 
                 <button type="submit" name="azuriraj" class="submit-btn">💾 Sačuvaj izmene</button>
+
+                <?php if (isset($_SESSION['greska']) && !empty($_SESSION['greska'])): ?>
+                    <div class="error-container">
+                        <?php foreach ($_SESSION['greska'] as $greska): ?>
+                            <p>⚠️ <?= $greska ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php unset($_SESSION['greska']); ?>
+                <?php endif; ?>
             </form>
 
         </div>
