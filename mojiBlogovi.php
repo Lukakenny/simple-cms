@@ -174,9 +174,16 @@ $myPosts = $post->getPostsById($_SESSION['id']);
         <h2>Pozdrav <?= $_SESSION['ime']?></h2>
     </div>
     <ul class="nav-links">
-        <li><a href="dashboard.html"><span>📊</span> Kontrolna tabla</a></li>
-        <li><a href="dashboard.php"><span>📝</span> Sve objave</a></li>
-        <li><a href="mojiBlogovi.php" class="active"><span>📂</span> Moji blogovi</a></li>
+        <?php if (isset($_SESSION['uloga']) && $_SESSION['uloga'] === "admin"): ?>
+            <li><a href="adminDashboard.html"><span>📊</span> Kontrolna tabla</a></li>
+            <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
+            <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
+
+        <?php else: ?>
+            <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
+            <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
+
+        <?php endif; ?>
 
     </ul>
     <div class="sidebar-footer">

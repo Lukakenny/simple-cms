@@ -173,9 +173,16 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
         <h2>Pozdrav <?= $_SESSION['ime']?></h2>
     </div>
     <ul class="nav-links">
-        <li><a href="dashboard.php"><span>📊</span> Kontrolna tabla</a></li>
-        <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
-        <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
+        <?php if (isset($_SESSION['uloga']) && $_SESSION['uloga'] === "admin"): ?>
+            <li><a href="adminDashboard.html"><span>📊</span> Kontrolna tabla</a></li>
+            <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
+            <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
+
+        <?php else: ?>
+            <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
+            <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
+
+        <?php endif; ?>
 
     </ul>
     <div class="sidebar-footer">

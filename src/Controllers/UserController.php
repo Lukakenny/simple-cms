@@ -72,6 +72,8 @@ class UserController
         if ($korisnik && password_verify($data['lozinka'], $korisnik['lozinka'])) {
             $_SESSION['id'] = $korisnik['id'];
             $_SESSION['ime'] = $korisnik['ime'];
+            $_SESSION['email'] = $korisnik['email'];
+            $_SESSION['uloga'] = $korisnik['uloga'];
             $_SESSION['logIn'] = true;
             header("location: dashboard.php");
             exit();
