@@ -39,7 +39,8 @@ if(isset($_POST['newPost']))
 if(isset($_POST['delete']))
 {
     $postController = new PostsController();
-    $postController->deletePost($_SESSION['id'],$_POST['delete']);
+    $postDelete= intval($_POST['delete']);
+    $postController->deletePost($_SESSION['id'],$postDelete);
 }
 
 

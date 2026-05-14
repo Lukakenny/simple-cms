@@ -193,19 +193,23 @@ $allPosts = $post->getAllPosts();
         <div class="content-wrapper">
             <div class="blog-grid">
 
-                 <?php foreach ($allPosts as $post) : ?>
+                <?php if(!empty($allPosts)) : ?>
+                    <?php foreach ($allPosts as $post) : ?>
 
-                     <div class="blog-card">
-                         <div class="blog-meta">
-                             <span>👤 <?= $post['autor']?></span>
-                             <span>📅 <?= $post['kreiran_u']?></span>
-                         </div>
-                         <h3><?= $post['naslov']?></h3>
-                         <p><?= $post['sadrzaj']?></p>
+                        <div class="blog-card">
+                            <div class="blog-meta">
+                                <span>👤 <?= $post['autor']?></span>
+                                <span>📅 <?= $post['kreiran_u']?></span>
+                            </div>
+                            <h3><?= $post['naslov']?></h3>
+                            <p><?= $post['sadrzaj']?></p>
 
-                     </div>
+                        </div>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                   <h3>Nema ni jednog posta</h3>
+                <?php endif; ?>
 
 
             </div>

@@ -180,7 +180,7 @@ $myPosts = $post->getPostsById($_SESSION['id']);
 
     </ul>
     <div class="sidebar-footer">
-        <a href="#" class="logout-btn">🚪 Odjavi se</a>
+        <a href="decisionMaker.php?akcija=logout" class="logout-btn">Odjavi se</a>
     </div>
 </aside>
 
@@ -197,29 +197,38 @@ $myPosts = $post->getPostsById($_SESSION['id']);
     <div class="content-wrapper">
         <div class="blog-grid">
 
-               <?php foreach ($myPosts as $post) : ?>
-                   <div class="blog-card">
-                       <div class="blog-meta">
-                           <span>📅 <?= $post['kreiran_u'] ?></span>
+               <?php if(!empty($myPosts)): ?>
+
+                   <?php foreach ($myPosts as $post) : ?>
+                       <div class="blog-card">
+                           <div class="blog-meta">
+                               <span>📅 <?= $post['kreiran_u'] ?></span>
+                           </div>
+                           <h3><?= $post['naslov'] ?></h3>
+                           <p><?= $post['sadrzaj'] ?></p>
+
+                           <div class="blog-actions">
+
+
+                               <a href="updatePost.php?id=<?= $post['id'] ?>" class="btn btn-edit">✎ Izmeni</a>
+
+
+
+                               <form action="decisionMaker.php" method="POST" style="display:inline;" >
+
+                                   <input type="hidden" name="delete" value="<?= $post['id'] ?>">
+
+                                   <button type="submit" name="obrisiBlog" class="btn btn-delete">🗑️ Obriši</button>
+                               </form>
+                           </div>
                        </div>
-                       <h3><?= $post['naslov'] ?></h3>
-                       <p><?= $post['sadrzaj'] ?></p>
+                   <?php endforeach; ?>
 
-                       <div class="blog-actions">
+              <?php else: ?>
 
+                    <h3>Nema te jos ni jedan post</h3>
 
-                           <a href="updatePost.php?id=<?= $post['id'] ?>" class="btn btn-edit">✎ Izmeni</a
-
-                           <form action="decisionMaker.php" method="POST" style="display:inline;" >
-
-                               <input type="hidden" name="delete" value="<?= $post['id'] ?>">
-
-                               <button type="submit" name="obrisiBlog" class="btn btn-delete">🗑️ Obriši</button>
-                           </form>
-                       </div>
-                   </div>
-             <?php endforeach; ?>
-
+            <?php endif; ?>
 
 
 

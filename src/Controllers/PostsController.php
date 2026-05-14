@@ -23,7 +23,7 @@ class PostsController
 
         $post = new Posts();
         $post->creat($data['naslov'], $data['sadrzaj'],$_SESSION['id']);
-        header("Location: dashboard.php");
+        header("Location: mojiBlogovi.php");
         exit();
     }
 
@@ -31,6 +31,8 @@ class PostsController
     {
           $post =new Posts();
           $obrisiPost = $post-> deletePost($sessionId, $postId);
+
+
 
           if ($obrisiPost) {
 
