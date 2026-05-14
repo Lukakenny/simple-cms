@@ -90,16 +90,6 @@ ORDER BY postovi.kreiran_u DESC");
         return $stmt->execute();
     }
 
-    public function addTags(int $tagId,int $postId): bool
-    {
-        $stmt = $this->connection->prepare("INSERT INTO postovi post_tag (post_id, tag_id) VALUES (:postId, :tagId)");
-        $stmt->bindParam(':postId', $postId);
-        $stmt->bindParam(':tagId', $tagId);
-        return $stmt->execute();
-    }
-
-
-
     public function addTag(array $tagoviIds, int $postId): bool
     {
         $tagStmt = $this->connection->prepare("INSERT INTO post_tag (post_id, tag_id) VALUES (:postId, :tagId)");
@@ -112,6 +102,37 @@ ORDER BY postovi.kreiran_u DESC");
         }
 
         return true;
+    }
+
+    public function getAllCategories():array
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM kategorije");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getPostsByCategory(int $kategorijaID): array
+    {
+        $stmt = $this->connection->prepare("
+        SELECT 
+            postovi.*, 
+            korisnici.ime AS autor,
+            kategorije.naziv AS imeKategorije,
+            GROUP_CONCAT(tagovi.naziv SEPARATOR ',') AS svi_tagovi
+        FROM postovi 
+        INNER JOIN korisnici ON postovi.korisnik_id = korisnici.id 
+        LEFT JOIN kategorije ON postovi.kategorija_id = kategorije.id
+        LEFT JOIN post_tag ON postovi.id = post_tag.post_id
+        LEFT JOIN tagovi ON post_tag.tag_id = tagovi.id
+        WHERE postovi.kategorija_id = :kategorijaID
+        GROUP BY postovi.id
+        ORDER BY postovi.kreiran_u DESC
+    ");
+
+        $stmt->bindParam(':kategorijaID', $kategorijaID);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 
 

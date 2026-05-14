@@ -210,7 +210,7 @@ $allPosts= $post->getAllPosts();
 
             <form action="decisionMaker.php" method="POST">
 
-             <input type="hidden" name="newPost" ?>
+             <input type="hidden" name="newPost" >
 
                 <div class="input-group">
                     <label for="naslov">Naslov objave</label>

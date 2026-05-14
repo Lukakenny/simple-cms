@@ -6,6 +6,11 @@ if(session_status() === PHP_SESSION_NONE)
     session_start();
 }
 
+if (!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
+    header("Location: index.php");
+    exit();
+}
+
 
 use app\Controllers\PostsController;
 use app\Controllers\UserController;
@@ -30,7 +35,7 @@ if (isset($_GET['akcija']) && $_GET['akcija'] === 'logout') {
     $userController->logout();
 }
 
-var_dump($_POST['newPost']);
+
 if(isset($_POST['newPost']))
 {
     $userController = new PostsController();

@@ -17,6 +17,9 @@ use app\Modeli\User;
 $post = new Posts();
 $allPosts = $post->getAllPosts();
 
+$kategorije = new Posts();
+$sveKategorije = $kategorije->getAllCategories();
+
 ?>
 <!DOCTYPE html>
 <html lang="sr">
@@ -252,6 +255,44 @@ $allPosts = $post->getAllPosts();
             color: #007BFF; /* Neka plava boja za link/kategoriju */
             font-weight: 600;
         }
+        /* KONTEJNER (Rešava problem sa menijem) */
+        .kategorije-kontejner {
+            /* OVO JE KLJUČNO: Gura ceo div ispod menija.
+               Ako ti je meni deblji, povećaj ovaj broj (npr. na 100px ili 120px) */
+            margin-top: 80px;
+
+            /* Lepo centriranje i razmak između dugmića */
+            display: flex;
+            flex-wrap: wrap; /* Ako nema mesta na ekranu, dugmići prelaze u novi red */
+            justify-content: center; /* Drži ih na sredini ekrana */
+            gap: 12px;
+            padding: 20px;
+        }
+
+        .kategorije-kontejner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .kategorija-pill {
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #555;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+        }
+
+        .kategorija-pill:hover,
+        .kategorija-pill.aktivna {
+            background-color: #4CAF50; /* Tvoja zelena boja */
+            color: white;
+            border-color: #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -288,8 +329,27 @@ $allPosts = $post->getAllPosts();
         <a href="newPost.php" class="action-btn">+ Nova Objava</a>
     </header>
 
+
+
+
+        <!-- NAVIGACIJA SA KATEGORIJAMA (Pills) -->
+        <div class="kategorije-kontejner">
+            <a href="dashboard.php" class="kategorija-pill <?= !isset($_GET['kategorija']) ? 'aktivna' : '' ?>">Sve objave</a>
+
+            <?php foreach ($sveKategorije as $kategorija): ?>
+                <?php
+                $aktivnaKlasa = (isset($_GET['kategorija']) && $_GET['kategorija'] == $kategorija['id']) ? 'aktivna' : '';
+                ?>
+                <a href="kategorije.php?kategorija=<?= $kategorija['id'] ?>" class="kategorija-pill <?= $aktivnaKlasa ?>">
+                    <?= htmlspecialchars($kategorija['naziv']) ?>
+                </a>
+            <?php endforeach; ?>
+        </div>>
+
     <div class="content-wrapper">
+
         <div class="blog-grid">
+
 
             <?php if (!empty($allPosts)) : ?>
                 <?php foreach ($allPosts as $post) : ?>
@@ -304,7 +364,7 @@ $allPosts = $post->getAllPosts();
                         <p class="kategorija-minimal">
                             📁 <strong>Kategorija:</strong> <span><?= $post['imeKategorije'] ?></span>
                         </p>
-                        <p>tagovi:
+
                         <p>Tagovi:
                             <?php
 

@@ -93,6 +93,16 @@ class PostsController
           exit();
     }
 
+    public function prikaziPostovePoKategoriji(int $kategorijaID): void
+    {
+        $postModel = new Posts();
+        $sveKategorije = $postModel->getAllCategories();
+        $postoviZaPrikaz = $postModel->getPostsByCategory($kategorijaID);
+        require_once "kategorije.php";
+    }
+
+
+
 
 
 
