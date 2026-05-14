@@ -174,7 +174,7 @@ $allPosts = $post->getAllPosts();
         </div>
         <ul class="nav-links">
             <?php if (isset($_SESSION['uloga']) && $_SESSION['uloga'] === "admin"): ?>
-                <li><a href="adminDashboard.html"><span>📊</span> Kontrolna tabla</a></li>
+                <li><a href="adminDashboard.php"><span>📊</span> Kontrolna tabla</a></li>
                 <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
                 <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
 

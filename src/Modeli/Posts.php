@@ -59,6 +59,15 @@ VALUES (:naslov,:tekst,:korisnik_id,NOW())");
         return $stmt->fetchAll();
      }
 
+    public function deletePostAdmin( int $postId): bool
+    {
+        $stmt = $this->connection->prepare("DELETE FROM postovi WHERE  id = :postId");
+        $stmt->bindParam(':postId', $postId);
+        return $stmt->execute();
+    }
+
+
+
 
 
 

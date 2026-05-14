@@ -65,5 +65,13 @@ class PostsController
         }
     }
 
+    public function deleteAdmin(int $postId):void
+    {
+          $post =new Posts();
+          $obrisiPost = $post-> deletePostAdmin($postId);
+          header("Location: adminDashboard.php");
+          exit();
+    }
+
 
 }

@@ -34,5 +34,14 @@ class User extends DB
         return $stmt->fetch();
     }
 
+    public function getAllUsers():array
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM korisnici");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
 
 }

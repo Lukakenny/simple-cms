@@ -50,6 +50,13 @@ if(isset($_POST['updatePost'])) {
    $postId = intval($_POST['updatePost']);
     $postController->updatePost($postId,$_SESSION['id'], $_POST['naslovUpdate'], $_POST['sadrzajUpdate'] );
 }
+if(isset($_POST['deleteAdmin']))
+{
+    $postController = new PostsController();
+    $postDelete= intval($_POST['deleteAdmin']);
+    $postController->deleteAdmin($postDelete);
+}
+
 
 
 
