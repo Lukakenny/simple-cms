@@ -175,7 +175,7 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
     <ul class="nav-links">
         <?php if (isset($_SESSION['uloga']) && $_SESSION['uloga'] === "admin"): ?>
             <li><a href="adminDashboard.php"><span>📊</span> Kontrolna tabla</a></li>
-            <li><a href="dashboard.php" class="active"><span>📝</span> Sve objave</a></li>
+            <li><a href="dashboard.php" ><span>📝</span> Sve objave</a></li>
             <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
 
         <?php else: ?>
@@ -215,7 +215,20 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true) {
                     <label for="sadrzaj">Sadržaj</label>
                     <textarea id="sadrzaj" name="sadrzaj" placeholder="Ovde započnite pisanje vašeg blog posta..." required></textarea>
                 </div>
+                <label>Izaberi kategoriju:</label>
+                <select name="kategorijaID" class="form-control">
 
+                    <option value="1">Programiranje</option>
+                    <option value="2">Dizajn</option>
+                </select>
+
+                <label>Izaberi tagove:</label>
+                <div class="tags-container">
+
+                    <label><input type="checkbox" name="tagovi[]" value="1"> PHP</label>
+                    <label><input type="checkbox" name="tagovi[]" value="2"> Webflow</label>
+                    <label><input type="checkbox" name="tagovi[]" value="3"> Baze Podataka</label>
+                </div>
                 <button type="submit" name="sacuvaj_objavu" class="btn-submit">Objavi tekst</button>
 
                 <?php if (isset($_SESSION['greska']) && !empty($_SESSION['greska'])): ?>

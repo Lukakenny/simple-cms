@@ -14,6 +14,9 @@ class PostsController
         if (!isset($data['sadrzaj']) || empty($data['sadrzaj'])) {
             array_push($greske, "Sadrzaj nije prosledjeno");
         }
+        if (  empty($data['kategorijaID'])) {
+            array_push($greske, "Morate izabrati kategoriju");
+        }
         $_SESSION['greska'] = $greske;
         if (!empty($greske)) {
             header("Location: newPost.php");
@@ -22,7 +25,7 @@ class PostsController
 
 
         $post = new Posts();
-        $post->creat($data['naslov'], $data['sadrzaj'],$_SESSION['id']);
+        $post->creat($data['naslov'], $data['sadrzaj'],$_SESSION['id'],intval($data['kategorijaID']));
         header("Location: mojiBlogovi.php");
         exit();
     }
@@ -56,6 +59,7 @@ class PostsController
             exit();
         }
 
+
         $post =new Posts();
         $updatePost = $post->updatePost($postId,$sessionId ,$naslov, $sadrzaj);
         if ($updatePost)
@@ -72,6 +76,8 @@ class PostsController
           header("Location: adminDashboard.php");
           exit();
     }
+
+
 
 
 }

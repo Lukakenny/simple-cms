@@ -243,7 +243,7 @@ $allPosts = $posts->getAllPosts();
         <h2>Pozdrav <?= $_SESSION['ime'] ?></h2>
     </div>
     <ul class="nav-links">
-        <li><a href="adminDashboard.php" class="active"><span>📊</span> Admin Tabla</a></li>
+        <li><a href="adminDashboard.php" class="active"><span>📊</span> Kontrolna tabla</a></li>
         <li><a href="dashboard.php"><span>📝</span> Sve objave</a></li>
         <li><a href="mojiBlogovi.php"><span>📂</span> Moji blogovi</a></li>
     </ul>

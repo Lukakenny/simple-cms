@@ -164,6 +164,25 @@ $allPosts = $post->getAllPosts();
 
         .btn-delete { background-color: #ffe6e6; color: #d93025; }
         .btn-delete:hover { background-color: #ffcccc; }
+        .kategorija-minimal {
+            font-size: 14px;
+            color: #555;
+            background-color: #f8f9fa; /* Jako svetla siva pozadina */
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            display: inline-block; /* Da ne zauzima ceo red */
+        }
+
+        .kategorija-minimal strong {
+            color: #333;
+            margin-right: 4px;
+        }
+
+        .kategorija-minimal span {
+            color: #007BFF; /* Neka plava boja za link/kategoriju */
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -213,6 +232,9 @@ $allPosts = $post->getAllPosts();
                             </div>
                             <h3><?= $post['naslov']?></h3>
                             <p><?= $post['sadrzaj']?></p>
+                            <p class="kategorija-minimal">
+                                📁 <strong>Kategorija:</strong> <span><?= $post['imeKategorije'] ?></span>
+                            </p>
 
                         </div>
 
