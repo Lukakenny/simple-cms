@@ -175,7 +175,7 @@ $myPosts = $post->getPostsById($_SESSION['id']);
     </div>
     <ul class="nav-links">
         <li><a href="dashboard.html"><span>📊</span> Kontrolna tabla</a></li>
-        <li><a href="blogovi.html"><span>📝</span> Sve objave</a></li>
+        <li><a href="dashboard.php"><span>📝</span> Sve objave</a></li>
         <li><a href="mojiBlogovi.php" class="active"><span>📂</span> Moji blogovi</a></li>
         <li><a href="#"><span>👥</span> Korisnici</a></li>
         <li><a href="#"><span>⚙️</span> Podešavanja</a></li>

@@ -1,4 +1,7 @@
 <?php
+require_once 'vendor/autoload.php';
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -8,6 +11,9 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true)
     header("Location: index.php");
     exit();
 }
+use app\Modeli\Posts;
+$post = new Posts();
+$allPosts = $post->getAllPosts();
 ?>
 <!DOCTYPE html>
 <html lang="sr">
@@ -187,51 +193,25 @@ if(!isset($_SESSION['logIn']) || $_SESSION['logIn'] !== true)
         <div class="content-wrapper">
             <div class="blog-grid">
 
-                <!-- KARTICA 1 (Prikaz sa svim dugmićima - Admin pogled) -->
-                <div class="blog-card">
-                    <div class="blog-meta">
-                        <span>👤 Ana Marić</span>
-                        <span>📅 12. Maj 2026.</span>
-                    </div>
-                    <h3>Top 5 Webflow trikova za brži dizajn</h3>
-                    <p>Otkrijte kako da ubrzate proces izrade sajtova koristeći napredne Webflow funkcije, komponente i prečice na tastaturi koje koriste profesionalci.</p>
+                 <?php foreach ($allPosts as $post) : ?>
 
-                    <div class="blog-actions">
-                        <a href="#" class="btn btn-read">Pročitaj sve</a>
-                        <a href="#" class="btn btn-edit">✎ Izmeni</a>
-                        <button class="btn btn-delete">🗑️ Obriši</button>
-                    </div>
-                </div>
+                     <div class="blog-card">
+                         <div class="blog-meta">
+                             <span>👤 <?= $post['autor']?></span>
+                             <span>📅 <?= $post['kreiran_u']?></span>
+                         </div>
+                         <h3><?= $post['naslov']?></h3>
+                         <p><?= $post['sadrzaj']?></p>
 
-                <!-- KARTICA 2 (Prikaz samo sa Read dugmetom - Editor pogled) -->
-                <div class="blog-card">
-                    <div class="blog-meta">
-                        <span>👤 Marko Petrović</span>
-                        <span>📅 10. Maj 2026.</span>
-                    </div>
-                    <h3>Uvod u PHP MVC arhitekturu</h3>
-                    <p>Model-View-Controller (MVC) obrazac je standard u modernom web programiranju. Saznajte kako da organizujete svoj kod za lakše održavanje i bolju sigurnost.</p>
+                         <div class="blog-actions">
+                             <a href="#" class="btn btn-read">Pročitaj sve</a>
+                             <a href="#" class="btn btn-edit">✎ Izmeni</a>
+                             <button class="btn btn-delete">🗑️ Obriši</button>
+                         </div>
+                     </div>
 
-                    <div class="blog-actions">
-                        <a href="#" class="btn btn-read">Pročitaj sve</a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
 
-                <!-- KARTICA 3 -->
-                <div class="blog-card">
-                    <div class="blog-meta">
-                        <span>👤 Jelena Savić</span>
-                        <span>📅 08. Maj 2026.</span>
-                    </div>
-                    <h3>Zašto je UI/UX dizajn presudan?</h3>
-                    <p>Dobar dizajn nije samo estetika, već pre svega funkcionalnost. Istražujemo kako pravilno postavljene senke i tipografija poboljšavaju korisničko iskustvo na vašem sajtu.</p>
-
-                    <div class="blog-actions">
-                        <a href="#" class="btn btn-read">Pročitaj sve</a>
-                        <a href="#" class="btn btn-edit">✎ Izmeni</a>
-                        <button class="btn btn-delete">🗑️ Obriši</button>
-                    </div>
-                </div>
 
             </div>
         </div>

@@ -38,10 +38,11 @@ class PostsController
     {
         $post =new Posts();
         $updatePost = $post->updatePost($postId,$sessionId ,$naslov, $sadrzaj);
-         header("Location: mojiBlogovi.php");
-
-
-
+        if ($updatePost)
+        {
+            header("Location: mojiBlogovi.php");
+            exit();
+        }
     }
 
 
